@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 02:18:33 by sclolus           #+#    #+#             */
-/*   Updated: 2017/12/02 02:38:25 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/12/03 00:44:54 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ inline void	philos_init(t_philo *philos, pthread_t *threads)
 		philos[i].hp = MAX_LIFE;
 		philos[i].state = EATING;
 		philos[i].thread_nbr = i;
+		philosophing(philos);
+		if (philos)
+			exit(EXIT_SUCCESS); //
 		if (pthread_create(threads + i, NULL, &philosophing, philos + i))
 			ft_error_exit(1, (char*[]){THREAD_INIT_FAILURE}, EXIT_FAILURE);
 		i++;

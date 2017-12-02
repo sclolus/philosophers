@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 01:52:04 by sclolus           #+#    #+#             */
-/*   Updated: 2017/12/02 02:36:38 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/12/03 00:48:12 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define THINK_T 1
 # define TIMEOUT 30
 # define TIMEOUT_MSG "Now, it is time... To DAAAAAAAANCE!!!"
-# define DMG_PER_SEC 1
+# define DMG_PER_SEC 1L
 # define PHILO_NBR 7
 # define BAGUETTE_NBR 7
 
@@ -63,6 +63,12 @@ typedef struct	s_philo
 
 void	baguettes_init(void);
 void	philos_init(t_philo *philos, pthread_t *threads);
+
+/*
+** Philosophers' routine
+*/
+
+void	*philosophing(void *philo); // return value ?
 
 /*
 ** Error handling

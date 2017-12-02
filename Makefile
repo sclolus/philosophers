@@ -1,6 +1,8 @@
 NAME= philo
 SRC= srcs/main.c \
-	srcs/baguettes_init.c
+	srcs/baguettes_init.c \
+	srcs/philos_init.c \
+	srcs/philosophing.c
 OBJ= $(SRC:.c=.o)
 HDR_PATH= ./libft/includes/
 CC= gcc
