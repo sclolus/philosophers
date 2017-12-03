@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 02:31:02 by sclolus           #+#    #+#             */
-/*   Updated: 2017/12/03 01:05:13 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/12/03 02:28:32 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,9 @@ void	*philosophing(void *arg) // return value ?
 	philo = arg;
 	oldtime = time(NULL);
 
-	while (42 && philo->state)
+	while (42 && philo->state && !simulation_ended)
 	{
 		time_count(philo, &oldtime);
-		if (philo->hp == 0)
-		{
-			philo->state = DEAD;
-			break;
-		}
-		if (simulation_ended)
-			break ;
 	}
 	return (NULL);
 }

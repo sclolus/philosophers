@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 00:54:02 by sclolus           #+#    #+#             */
-/*   Updated: 2017/12/03 01:09:22 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/12/03 02:35:29 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ inline void	check_simulation_state(t_philo *philos, const time_t *start_time)
 	}
 	while (i < PHILO_NBR)
 	{
-		if (philos[i].state == DEAD)
+		if (philos[i].hp == 0)
 		{
+			philos[i].state = DEAD;
 			simulation_ended = 1;
 			printf("Simulation terminated because philo: %llu died\n", philos[i].thread_nbr);
 			getchar(); // REMOVE THIS
