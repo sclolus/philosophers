@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 01:52:04 by sclolus           #+#    #+#             */
-/*   Updated: 2017/12/03 00:48:12 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/12/03 01:08:04 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define EAT_T 1
 # define REST_T 1
 # define THINK_T 1
-# define TIMEOUT 30
+# define TIMEOUT 3
 # define TIMEOUT_MSG "Now, it is time... To DAAAAAAAANCE!!!"
 # define DMG_PER_SEC 1L
 # define PHILO_NBR 7
@@ -41,13 +41,14 @@
 
 typedef enum	e_philo_state
 {
-	ERR = 0,
+	DEAD = 0,
 	EATING,
 	RESTING,
 	THINKING,
 }				t_philo_state;
 
 extern pthread_mutex_t		baguettes[7];
+extern int32_t				simulation_ended;
 
 typedef struct	s_philo
 {
@@ -69,6 +70,12 @@ void	philos_init(t_philo *philos, pthread_t *threads);
 */
 
 void	*philosophing(void *philo); // return value ?
+
+/*
+** Master thread routines
+*/
+
+void	check_simulation_state(t_philo *philos, const time_t *start_time);
 
 /*
 ** Error handling

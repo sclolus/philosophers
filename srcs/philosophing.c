@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 02:31:02 by sclolus           #+#    #+#             */
-/*   Updated: 2017/12/03 00:49:41 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/12/03 01:05:13 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	time_count(t_philo *philo, time_t *oldtime)
 	delta_time = newtime - *oldtime;
 	if (delta_time >= 1)
 	{
+		printf("philo_id: %llu, philo_hp: %llu\n", philo->thread_nbr, philo->hp);
 		*oldtime = newtime;
 		dmg = (uint64_t)(DMG_PER_SEC * delta_time);
 		philo->hp = (philo->hp > dmg) ? philo->hp - dmg : 0;
@@ -36,11 +37,16 @@ void	*philosophing(void *arg) // return value ?
 	philo = arg;
 	oldtime = time(NULL);
 
-	while (42)
+	while (42 && philo->state)
 	{
-		printf("test\n");
 		time_count(philo, &oldtime);
-		if (!philo->hp)
-			return (NULL);
+		if (philo->hp == 0)
+		{
+			philo->state = DEAD;
+			break;
+		}
+		if (simulation_ended)
+			break ;
 	}
+	return (NULL);
 }
