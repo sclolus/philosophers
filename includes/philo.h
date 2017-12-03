@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 01:52:04 by sclolus           #+#    #+#             */
-/*   Updated: 2017/12/03 02:36:49 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/12/03 03:19:58 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define EAT_T 1
 # define REST_T 1
 # define THINK_T 1
-# define TIMEOUT 3
+# define TIMEOUT 30
 # define TIMEOUT_MSG "Now, it is time... To DAAAAAAAANCE!!!"
 # define DMG_PER_SEC 1L
 # define PHILO_NBR 7
@@ -58,6 +58,12 @@ typedef struct	s_philo
 	uint8_t			__pad[4];
 }				t_philo;
 
+typedef int32_t	(*t_f_philo_callback)(t_philo *philo);
+
+int32_t	rest_state_callback(t_philo *philo);
+
+# define CALLBACK_NBR 3
+
 /*
 ** Initialization
 */
@@ -70,12 +76,15 @@ void	philos_init(t_philo *philos, pthread_t *threads);
 */
 
 void	*philosophing(void *philo); // return value ?
+void	sec_sleep(uint64_t sec);
 
 /*
 ** Master thread routines
 */
 
-void	check_simulation_state(t_philo *philos, const time_t *start_time);
+void	check_simulation_state(t_philo *philos, const time_t *start_time
+								, time_t *old_time);
+
 
 /*
 ** Error handling
@@ -83,5 +92,6 @@ void	check_simulation_state(t_philo *philos, const time_t *start_time);
 
 # define BAGUETTE_INIT_FAILURE "pthread_mutex_init() failed"
 # define THREAD_INIT_FAILURE "pthread_create() failed"
+# define SEC_SLEEP_FAILURE "usleep() has been interrupted by signal"
 
 #endif

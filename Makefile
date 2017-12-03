@@ -3,7 +3,9 @@ SRC= srcs/main.c \
 	srcs/baguettes_init.c \
 	srcs/philos_init.c \
 	srcs/philosophing.c \
-	srcs/check_simulation_state.c
+	srcs/check_simulation_state.c \
+	srcs/sec_sleep.c \
+	srcs/rest_state_callback.c
 OBJ= $(SRC:.c=.o)
 HDR_PATH= ./libft/includes/
 HDRS= ./includes/philo.h
