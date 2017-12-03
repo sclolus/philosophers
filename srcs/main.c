@@ -6,13 +6,14 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 01:52:47 by sclolus           #+#    #+#             */
-/*   Updated: 2017/12/03 02:56:15 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/12/03 06:38:12 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 pthread_mutex_t		baguettes[BAGUETTE_NBR];
+uint64_t			ownerships[BAGUETTE_NBR];
 int32_t				simulation_ended = 0;
 
 int	main(void)

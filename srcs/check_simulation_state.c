@@ -6,13 +6,25 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 00:54:02 by sclolus           #+#    #+#             */
-/*   Updated: 2017/12/03 02:58:10 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/12/03 07:21:52 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-inline void	check_simulation_state(t_philo *philos, const time_t *start_time
+static char	*get_state_str_philo(t_philo_state state)
+{
+	if (!state)
+		return ("FUCKIGN DEAD");
+	else if (state == EATING)
+		return ("EATING");
+	else if (state == RESTING)
+		return ("RESTING");
+	else
+		return ("not thinking definetly");
+}
+
+/* inline */ void	check_simulation_state(t_philo *philos, const time_t *start_time
 							, time_t *old_time)
 {
 	uint64_t	i;
@@ -37,9 +49,10 @@ inline void	check_simulation_state(t_philo *philos, const time_t *start_time
 	}
 	while (i < PHILO_NBR)
 	{
-		philos[i].hp = (philos[i].hp > dmg) ? philos[i].hp - dmg : 0;
+		if (philos[i].state != EATING)
+			philos[i].hp = (philos[i].hp > dmg) ? philos[i].hp - dmg : 0;
 		if (dmg)
-			printf("philo_id: %llu, philo_hp: %llu\n", philos[i].thread_nbr, philos[i].hp);
+			printf("philo_id: %llu, philo_hp: %llu -> %s \n", philos[i].thread_nbr, philos[i].hp, get_state_str_philo(philos[i].state));
 		if (philos[i].hp == 0)
 		{
 			philos[i].state = DEAD;
@@ -50,4 +63,6 @@ inline void	check_simulation_state(t_philo *philos, const time_t *start_time
 		}
 		i++;
 	}
+	if (dmg)
+		printf("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 01:52:04 by sclolus           #+#    #+#             */
-/*   Updated: 2017/12/03 03:19:58 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/12/03 07:44:28 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 # include <time.h>
 # include <pthread.h>
 
-# define MAX_LIFE 10
+# define MAX_LIFE 5
 # define EAT_T 1
 # define REST_T 1
 # define THINK_T 1
-# define TIMEOUT 30
+# define TIMEOUT 60000
 # define TIMEOUT_MSG "Now, it is time... To DAAAAAAAANCE!!!"
 # define DMG_PER_SEC 1L
 # define PHILO_NBR 7
@@ -47,7 +47,8 @@ typedef enum	e_philo_state
 	THINKING,
 }				t_philo_state;
 
-extern pthread_mutex_t		baguettes[7];
+extern pthread_mutex_t		baguettes[BAGUETTE_NBR];
+extern uint64_t				ownerships[BAGUETTE_NBR];
 extern int32_t				simulation_ended;
 
 typedef struct	s_philo
@@ -61,6 +62,8 @@ typedef struct	s_philo
 typedef int32_t	(*t_f_philo_callback)(t_philo *philo);
 
 int32_t	rest_state_callback(t_philo *philo);
+int32_t	eat_state_callback(t_philo *philo);
+int32_t	think_state_callback(t_philo *philo);
 
 # define CALLBACK_NBR 3
 

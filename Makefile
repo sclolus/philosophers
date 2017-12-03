@@ -5,12 +5,14 @@ SRC= srcs/main.c \
 	srcs/philosophing.c \
 	srcs/check_simulation_state.c \
 	srcs/sec_sleep.c \
-	srcs/rest_state_callback.c
+	srcs/rest_state_callback.c \
+	srcs/eat_state_callback.c \
+	srcs/think_state_callback.c
 OBJ= $(SRC:.c=.o)
 HDR_PATH= ./libft/includes/
 HDRS= ./includes/philo.h
 CC= gcc
-CC_FLAGS= -Ofast -v -Weverything -Wall -Werror -Wextra  -g3 -fsanitize=address -fsanitize-blacklist=my_ignores.txt #-Werror
+CC_FLAGS= -Ofast -v -Weverything -Wall -Werror -Wextra # -g3 -fsanitize=address -fsanitize-blacklist=my_ignores.txt #-Werror
 #VPATH=./srcs:./obj:./includes/
 
 all: submodule $(NAME)
